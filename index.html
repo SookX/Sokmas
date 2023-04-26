@@ -6,8 +6,18 @@
   </head>
   <body>
     <h class="home">HOME</h>
-    <nav>
-        <a href="about.html">ABOUT</a>
-    </nav>
+
+    
+    <div class="content">
+      <div id="score" style="color: white;">Score: </div>
+        <a href="game.html">Play</a>
+    </div>
   </body>
+  <script>
+    var scoreElement = document.getElementById("score");
+var searchParams = new URLSearchParams(window.location.search);
+var score = searchParams.get("score");
+
+scoreElement.textContent = "Score: " + score;
+  </script>
 </html>

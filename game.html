@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jumping Game</title>
+    <style>
+        body {
+            background: url('static/game/background.jpg') no-repeat ;
+            background-size: cover;
+            overflow: hidden;
+        }
+        #game {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    margin: 50px auto;
+ 
+}
+
+#player {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    
+
+}
+
+#obstacle {
+    position: absolute;
+    bottom: 0;
+    left: 600px;
+    width: 50px;
+    height: 100px;
+
+    
+}
+#score {
+    font-size: 20px;
+    font-weight: 900;
+}
+    </style>
+</head>
+<body>
+    <div id="score">Score: 0</div>    <div id="game">
+        <div >
+            <img src="static/game/character.png" id="player" >
+        </div>
+        <div >
+            <img src="static//game/cactus.png" alt="" id="obstacle">
+        </div>
+        <div id="over" style="position: relative;top: 500px;left: 500px;">
+        </div>
+    </div>
+
+    <script>var player = document.getElementById("player");
+        var obstacle = document.getElementById("obstacle");
+        var game = document.getElementById("game");
+        
+        var playerJump = false;
+        var jumpCount = 0;
+        var jumpInterval;
+        var score = 0;
+        
+        function jump() {
+            if (!playerJump) {
+                playerJump = true;
+                jumpCount = 0;
+                jumpInterval = setInterval(jumpUp, 20);
+            }
+        }
+        
+        function jumpUp() {
+            var jumpHeight = 150;
+            if (jumpCount < jumpHeight) {
+                jumpCount += 12;
+                player.style.bottom = jumpCount + "px";
+            } else {
+                clearInterval(jumpInterval);
+                jumpInterval = setInterval(jumpDown, 20);
+            }
+        }
+        
+        function jumpDown() {
+            if (jumpCount > 0) {
+                jumpCount -= 12;
+                player.style.bottom = jumpCount + "px";
+            } else {
+                clearInterval(jumpInterval);
+                playerJump = false;
+            }
+        }
+        var scoreElement = document.getElementById("score");
+        var obstacles = document.getElementsByClassName("obstacle");
+
+
+
+        function moveObstacle() {
+            var obstaclePosition = 1520;
+            score+= 1;
+            scoreElement.innerHTML = "Score: " + score; 
+            obstacle.style.left = obstaclePosition + "px";
+            var moveInterval = setInterval(moveLeft, 10);
+        
+            function moveLeft() {
+                if (obstaclePosition > -50) {
+                    obstaclePosition -= 10;
+                    obstacle.style.left = obstaclePosition + "px";
+                    if (obstaclePosition == 0 && jumpCount < 50) {
+                        clearInterval(moveInterval);
+                        window.location.href = "index.html?score=" + encodeURIComponent(score);
+                    }
+                } else {
+                    clearInterval(moveInterval);
+                    moveObstacle();
+                }
+            }
+        }
+        
+        document.addEventListener("keydown", jump);
+        moveObstacle();
+        </script>
+</body>
+</html>

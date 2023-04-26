@@ -1,0 +1,21 @@
+body {
+    background: black;
+    overflow: hidden;
+    border: 1px solid;
+    height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    align-items: end;
+}
+.character {
+
+ 
+    transition: transform 0.5s ease-in-out;
+}
+
+.block {
+    width: 100px;
+    height: 100px;
+    background: black;
+}
