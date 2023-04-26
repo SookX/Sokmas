@@ -1,0 +1,46 @@
+body{
+    background-color: black;
+    overflow: hidden;
+    font-family: 'Poppins',sans-serif;
+}
+.home{
+    position: absolute;
+    color: #ffffff;
+    right: 92%;
+    top: 4%;
+    font-size:110%;
+    font-style:normal;
+}
+nav{
+    position: absolute;
+    height: 10vh;
+    left: 92%;
+    min-width: 1000px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+a{
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 18xp;
+    letter-spacing: 0.5px;
+    padding: 0 10px;
+}
+a::after{
+    content: "";
+    position: absolute;
+    background-color: white;
+    height: 3px;
+    width: 0%;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+a:hover{
+    color: #ffffff;
+}
+a:hover::after{
+    width: 100%;
+}
